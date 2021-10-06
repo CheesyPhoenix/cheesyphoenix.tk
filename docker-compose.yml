@@ -1,0 +1,23 @@
+version: "3"
+services:
+    api:
+        image: cheesyphoenix/websiteapi
+        build: /api/
+        ports:
+            - "8080:8080"
+        volumes:
+            - testVolume:/src/data
+        environment:
+            DATA_PATH: /src/data/MenuSites.json
+        restart: always
+        container_name: webapi
+    web:
+        image: cheesyphoenix/mainwebsite
+        build: /Website/
+        ports:
+            - "80:80"
+        container_name: website
+        restart: always
+
+volumes:
+    testVolume:
